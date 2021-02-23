@@ -242,7 +242,7 @@ $max-portrait-landscape-wh:60vh;
 $portrait-portrait-w:50vw;
 $max-portrait-portrait-w:13rem;
 	// 100 is to 37 ratio of pic
-$portrait-portrait-h:calc(.372 * $portrait-portrait-w); 
+$portrait-portrait-h:.372 * $portrait-portrait-w; 
 $max-portrait-portrait-h:5rem;
 
 // Portrait Picture
