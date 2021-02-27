@@ -1,6 +1,6 @@
 import './App.css';
 import React, { useState, useRef } from 'react';
-import { Carousel, Container, Modal, Tooltip, Overlay, Button} from 'react-bootstrap';
+import { Carousel, Container, Modal, Tooltip, Overlay} from 'react-bootstrap';
 import img1 from './img/test.gif';
 import img2 from './img/test.gif';
 import port_pic_portrait from './img/portrait_gorl.png';
