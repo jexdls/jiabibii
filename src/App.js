@@ -6,7 +6,6 @@ import img2 from './img/test.gif';
 import port_pic_portrait from './img/portrait_gorl.png';
 import port_pic_landscape from './img/gorl.png';
 import rose from './img/rose.png';
-import $ from "jquery";
 
 
 function App() {
