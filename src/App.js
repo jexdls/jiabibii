@@ -1,11 +1,12 @@
 import './App.css';
-import React, { useState } from 'react';
-import { Carousel, Container, Modal} from 'react-bootstrap';
+import React, { useState, useRef } from 'react';
+import { Carousel, Container, Modal, Tooltip, Overlay, Button} from 'react-bootstrap';
 import img1 from './img/test.gif';
 import img2 from './img/test.gif';
 import port_pic_portrait from './img/portrait_gorl.png';
 import port_pic_landscape from './img/gorl.png';
 import rose from './img/rose.png';
+import $ from "jquery";
 
 
 function App() {
@@ -13,6 +14,35 @@ function App() {
     window.addEventListener('resize', ()=>checkIfOnPhone());
 
      const[showContact, setShowContact] = useState(false);
+
+     const[facebookIframeW, setFacebookIframeW] = useState(350);
+     const[facebooksrc, setFacebooksrc] = useState("https://www.facebook.com/plugins/post.php?href=https%3A%2F%2Fwww.facebook.com%2Fjiabibii%2Fposts%2F673875673439182&show_text=true&appId=195073292401592&width="+facebookIframeW);
+     const[facebookIframeJSX, setFacebookIframeJSX] = 
+     useState(<iframe 
+      className="iframe-style" 
+      src={facebooksrc}
+      scrolling="no" 
+      allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share">
+      </iframe>);
+
+     const[youtubeIframeW, setYoutubeIframeW] = useState(350);
+     const[youtubesrc, setYoutubesrc] = useState("https://www.youtube.com/embed/JGF7MFZZAEY");
+     const[youtubeIframeJSX, setYoutubeIframeJSX] = 
+     useState(<iframe 
+      className="iframe-style" 
+      width={youtubeIframeW}
+      height="315" 
+      src={youtubesrc}
+      frameborder="0" 
+      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+      allowfullscreen>
+      </iframe>);
+
+     const[instagramIframeW, setInstagramIframeW] = useState(350);
+     const[instagramsrc, setInstagramsrc] = useState("https://www.facebook.com/plugins/post.php?href=https%3A%2F%2Fwww.facebook.com%2Ffrsyj%2Fposts%2F3794871637261894&show_text=true&height=450&appId&width="+facebookIframeW);
+     const[instagramIframeJSX, setInstagramIframeJSX] = 
+     useState();
+
 
     function checkIfOnPhone(){
       setIsOnPhone((window.innerWidth-250 < window.innerHeight)? true : false);
@@ -32,7 +62,7 @@ function App() {
           {/* </Container> */}
         </Container>
         <Container className={isOnPhone?"about-out-cont-100vw":"about-out-cont-50vw"} id="about_out_cont" fluid>
-          <About/>s
+          <About/>
         </Container>
         <PortraitPicture isOnPhone={isOnPhone}/>
         <RosePicture/>
@@ -41,9 +71,9 @@ function App() {
       <section id="content_sec">
         <ContentTitle/>
         <Container fluid id="contents-cont" className="m-auto d-flex flex-wrap">
-          <LatestContentCard myTitle="Facebook" myIcon="fab fa-facebook" xClass="facebook"/>
-          <LatestContentCard myTitle="Youtube" myIcon="fab fa-youtube" xClass="youtube"/>
-          <LatestContentCard myTitle="Instagram" myIcon="fab fa-instagram" xClass="instagram"/>
+          <LatestContentCard myTitle="Facebook" myIcon="fab fa-facebook" xClass="facebook" iframeJSX={facebookIframeJSX}/>
+          <LatestContentCard myTitle="Youtube" myIcon="fab fa-youtube" xClass="youtube" iframeJSX={youtubeIframeJSX}/>
+          <LatestContentCard myTitle="Instagram" myIcon="fab fa-instagram" xClass="instagram" iframeJSX={instagramIframeJSX}/>
           <LatestContentCard myTitle="TikTok" myIcon="fas fa-music" xClass="tiktok"/>
           <LatestContentCard myTitle="Twitter" myIcon="fab fa-twitter" xClass="twitter"/>
         </Container>
@@ -116,13 +146,40 @@ function MainTitle(props){
   return(
     <div className="maintitle w-auto">
         <h1 className="maintitle_lg">
-          JIABIBII
+          JIA
         </h1>
-        <h3 className="maintitle_sm">
-          <i className="fas fa-video"></i> content creator
-        </h3>
+        <SmallTitle/>
     </div>
     );
+}
+
+function SmallTitle() {
+  const [show, setShow] = useState(false);
+  const [underlineClass, setUnderlineClass] = useState("mt-n3");
+  const target = useRef(null);
+
+  return (
+    <>
+        <button ref={target} 
+          onMouseOver={() => {setUnderlineClass("mt-n3 underline-hover")}}
+          onMouseLeave={() => {setUnderlineClass("mt-n3")}}
+          onClick={() => {
+            copyToClipboard(document.querySelector(".maintitle_sm").textContent);
+            setShow(true);
+            setTimeout(()=>{setShow(false)},2000)}} 
+          className="maintitle_sm">
+          @jiabibii
+        </button>
+        <div id="underline" className={underlineClass}></div>
+      <Overlay target={target.current} show={show} placement="right">
+        {(props) => (
+          <Tooltip id="overlay-example" {...props}>
+            text copied! be sure to follow my content! :D
+          </Tooltip>
+        )}
+      </Overlay>
+    </>
+  );
 }
 
 function CTAButtons(props){
@@ -175,15 +232,39 @@ function ContactInfo(props){
             click <i>#</i> to copy information
           </h5>
           <p>
-            <i>#</i>&ensp;email 1 <br/>
-            <i>#</i>&ensp;contact 2 <br/>
-            <i>#</i>&ensp;email 3 <br/>
-            <i>#</i>&ensp;home number 4 <br/>
-            <i>#</i>&ensp;phone number 1 <br/>
+            <ContactCopybtn idOfToCopy="contact1"/> <span id="contact1">email</span>  <br/>
+            <ContactCopybtn idOfToCopy="contact2"/> <span id="contact2">gmail 2</span>  <br/>
+            <ContactCopybtn idOfToCopy="contact3"/> <span id="contact3">ymail 5</span>  <br/>
           </p>
         </Modal.Body>
       </Modal>
       );
+}
+
+function ContactCopybtn(props) {
+  const [show, setShow] = useState(false);
+  const [underlineClass, setUnderlineClass] = useState("mt-n3");
+  const target = useRef(null);
+
+  return (
+    <>
+        <button ref={target} 
+          onClick={() => {
+            copyToClipboard(document.querySelector("#"+props.idOfToCopy).textContent);
+            setShow(true);
+            setTimeout(()=>{setShow(false)},2000)}} 
+          className="bg-tp border-0 mt-n3">
+          <i>#</i>
+        </button>
+      <Overlay target={target.current} show={show} placement="right">
+        {(props) => (
+          <Tooltip id="overlay-example" {...props}>
+            Text copied!
+          </Tooltip>
+        )}
+      </Overlay>
+    </>
+  );
 }
 
 function PortraitPicture(props){
@@ -227,19 +308,36 @@ function LatestContentCard(props){
   // let title=props.myTitle;
   const[lineClassName, setLineClassName]=useState("line " + props.xClass);
   return(
-    <Container 
-      onMouseOver={() => setLineClassName(lineClassName+" thick-line")}
-      onMouseLeave={() => setLineClassName("line " + props.xClass)}
-      className="latest-content-card-cont">
-      <div>
-        <h1><i className={props.myIcon}></i></h1>
-      </div>
-      <div className={lineClassName}></div>
-      <div className="content-cont">
-        
-      </div>
-    </Container>
+      <Container
+        onMouseOver={() => setLineClassName(lineClassName+" thick-line")}
+        onMouseLeave={() => setLineClassName("line " + props.xClass)}
+        className="latest-content-card-cont p-0">
+          <div id="title-cont">
+            <h1><i className={props.myIcon}></i></h1>
+          </div>
+          <div className={lineClassName}></div>
+          <div className="container mx-auto p-0 iframe-cont">
+            {props.iframeJSX}
+          </div>
+      </Container>
+
     );
 }
+
+
+
+
+function copyToClipboard(text){
+      const textArea = document.createElement('textarea');
+      textArea.value = text;
+
+      const body = document.body;
+      if (body != null) {
+          body.appendChild(textArea);
+          textArea.select();
+          document.execCommand('copy');
+          body.removeChild(textArea);
+      }
+  };
 
 export default App;

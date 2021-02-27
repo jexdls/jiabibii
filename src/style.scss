@@ -1,5 +1,6 @@
 $bg-color: #fff;
 $yellow-sat: #edb50b;
+$hyperlink-blue: #0000EE;
 
 html{
 	font-size: 20px;
@@ -88,12 +89,49 @@ $gifoverview-gif-w:4000px;
 		font-size:3.5rem;
 	}
 	&_sm{
+		color:black;
 		position:relative;
-		top:-2px;
+		top:-0.9rem;
 		margin:0;
 		font-size:1rem;
+		opacity: .7;
+		border:0;
+		background-color: transparent;
+		&:hover{
+			color: $yellow-sat;
+		}
+	}
+	#underline{
+		animation: anim-tooltip-underline 2s ease-in 0s;
+		animation-iteration-count: infinite;
+		background-color: black;
+		height:1px;
+	}
+	.underline-hover{
+		background-color: $yellow-sat !important;
 	}
 }
+// TOOLTIP
+#overlay-example{
+	font-size: 0.7rem;
+	font-weight: 400;
+}
+@keyframes anim-tooltip-underline{
+	0%{
+		width:0%;
+		background-color: black;
+	}
+	80%{
+		width:100%;
+	}
+	90%{
+		background-color: transparent;
+	}
+	100%{
+		background-color: transparent;
+	}
+}
+
 
 //CTA
 // $width-before: 170px;
@@ -279,6 +317,9 @@ $max-portrait-portrait-h:5rem;
 
 // About
 
+.bg-tp{background-color: transparent}
+.border-0{border:0;}
+
 #about_out_cont{
 	position: absolute;
 	bottom: 4rem;
@@ -385,29 +426,29 @@ $rose-wh:35rem;
 	grid-gap:2rem;
 }
 
-$content-card-w: 23rem;
-$content-card-h: 12rem;
 .latest-content-card-cont{
+	// background-color: yellow;
 	overflow: hidden;
-	width: $content-card-w;
-	height: $content-card-h;
-	z-index:2;
+	width:700px;
+	height:700px;
 
-	.content-cont{
-		background-color: white;
-		width: 100%;
-		height: 81%;
-	}
 
 	.line{
+		margin: auto;
 		height:2%;
-		width:100%;
+		width:94%;
+		width:350px;
+		opacity:0.6;
 	}
 	.thick-line{
-		height:4% !important;
+		opacity:1;
 	}
-
+	#title-cont{
+		height:4%;
+	}
 	h1{
+		overflow: hidden;
+		margin-bottom:0.1rem;
 		color: white;
 		font-size:1.3rem;
 	}
@@ -438,4 +479,20 @@ $content-card-h: 12rem;
 		background-color: $twitter-color;
 	}
 
+	// fbpost is 350x690px = 100% : 50.72%
+	.iframe-cont{
+	    // overflow: hidden;
+	    // 100% - titlecont height - line height
+	    width:94%;
+	    height:94%;
+	}
 }
+.iframe-style{
+	// background-color: white !important;
+	border:0;
+	// outline: 1px solid white;
+	outline-offset: 10px;
+	width:100%;
+	height:100%;
+}
+
