@@ -79,27 +79,14 @@ function App() {
               </div>);
 
       // TIKTOK EMBED CONFIG
-     const[tiktokCite, setTiktokCite] = useState("https://www.tiktok.com/@jiabibii/video/6936295605538934018" );
-     const[tiktokDataVideoId, setTiktokDataVideoId] = useState("6936295605538934018" );
+     const[tiktokCite, setTiktokCite] = useState("https://www.tiktok.com/@jiabibii/video/6934895010877820162");
+     const[tiktokDataVideoId, setTiktokDataVideoId] = useState("6934895010877820162");
      const[tiktokSection, setTiktokSection] = 
      useState(
               <div>
-                      <section> 
-                          <a target="_blank" title="@jiabibii" href="https://www.tiktok.com/@jiabibii">
-                            @jiabibii
-                          </a> 
-                          <p>
-                            <a title="adoptdontshop" target="_blank" href="https://www.tiktok.com/tag/adoptdontshop">
-                              #adoptdontshop
-                            </a>
-                             follow @pawssionproject  official tiktok 🥰
-                           </p> 
-                           <a target="_blank" title="♬ original sound - Cibi" href="https://www.tiktok.com/music/original-sound-6922356027585268486">
-                            ♬ original sound - Cibi
-                          </a> 
-                        </section>
+                      <section> <a target="_blank" title="@jiabibii" href="https://www.tiktok.com/@jiabibii">@jiabibii</a> <p>kakatapos lng mag-dampot ng tae ng aso <a title="kbye" target="_blank" href="https://www.tiktok.com/tag/kbye">##kbye</a> <a title="kbyedancechallenge" target="_blank" href="https://www.tiktok.com/tag/kbyedancechallenge">##kbyedancechallenge</a> @alamat.official </p> <a target="_blank" title="♬ kbye - Alamat" href="https://www.tiktok.com/music/kbye-6927297191204390913">♬ kbye - Alamat</a> </section>
              </div>
-                );
+              );
      const[tiktokIframeJSX, setTiktokIframeJSX] = 
      useState(
               <div>
@@ -111,7 +98,8 @@ function App() {
                    {tiktokSection}
                 </blockquote> 
                 
-              </div>);
+              </div>
+              );
 
 
     function checkIfOnPhone(){
