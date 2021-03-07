@@ -421,3 +421,7 @@ export default App;
 // add splash of design
 
 // secure tokens sensitive info
+
+// loading screen
+
+// modify read me file
