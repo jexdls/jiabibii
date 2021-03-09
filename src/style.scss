@@ -275,6 +275,9 @@ $sub-head-i-color: #91b3a5;
 		i{
 			color: $sub-head-i-color;
 			font-weight:700;
+			&:hover{
+				color:$yellow-sat;
+			}
 		}
 	}
 }

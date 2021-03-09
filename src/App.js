@@ -13,6 +13,8 @@ import InstagramEmbed from 'react-instagram-embed';
 
 import { TwitterTimelineEmbed, TwitterTweetEmbed } from 'react-twitter-embed';
 
+import Skeleton from 'react-loading-skeleton';
+
 
 
 function App() {
@@ -25,13 +27,15 @@ function App() {
      const[facebookIframeW, setFacebookIframeW] = useState(350);
      const[facebooksrc, setFacebooksrc] = useState("https://www.facebook.com/plugins/post.php?href=https%3A%2F%2Fwww.facebook.com%2Fjiabibii%2Fposts%2F673875673439182&show_text=true&appId=195073292401592&width="+facebookIframeW);
      const[facebookIframeJSX, setFacebookIframeJSX] = 
-     useState(<iframe 
-      id="facebook"
-      className="iframe-style" 
-      src={facebooksrc}
-      scrolling="no" 
-      allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share">
-      </iframe>);
+     useState(
+              <iframe 
+               id="facebook"
+               className="iframe-style" 
+               src={facebooksrc}
+               scrolling="no" 
+               allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share">
+               </iframe>
+      );
 
       // YOUTUBE EMBED CONFIG
      const[youtubeIframeW, setYoutubeIframeW] = useState(350);
@@ -378,8 +382,8 @@ function LatestContentCard(props){
             <h1><i className={props.myIcon}></i></h1>
           </div>
           <div className={lineClassName}></div>
-          <div className="container mx-auto p-0 iframe-cont">
-            {props.iframeJSX}
+          <div className="container mx-auto p-0 iframe-cont" style={{"color": "magenta"}}>
+            {props.iframeJSX || "Loading"}
           </div>
       </Container>
 
@@ -420,8 +424,8 @@ export default App;
 
 // add splash of design
 
-// secure tokens sensitive info
+// ^ secure tokens sensitive info
 
 // loading screen
 
-// modify read me file
+// ^ modify read me file
