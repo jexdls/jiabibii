@@ -13,9 +13,6 @@ import InstagramEmbed from 'react-instagram-embed';
 
 import { TwitterTimelineEmbed, TwitterTweetEmbed } from 'react-twitter-embed';
 
-import Skeleton from 'react-loading-skeleton';
-
-
 
 function App() {
     const [isOnPhone, setIsOnPhone] = useState((window.innerWidth < window.innerHeight)? true : false);
@@ -372,20 +369,32 @@ function ContentTitle(props){
 
 function LatestContentCard(props){
   const[lineClassName, setLineClassName]=useState("line " + props.xClass);
+  const[isLoading, setIsLoading] = useState(true);
+  const style= {visibility: !isLoading? "visible" : "hidden", position: !isLoading? "relative": "fixed"};
   return(
+    <LoadingSpinner isLoading={isLoading}>
       <Container
+        style={style}
         id={props.contentId}
         onMouseOver={() => setLineClassName(lineClassName+" thick-line")}
         onMouseLeave={() => setLineClassName("line " + props.xClass)}
-        className="latest-content-card-cont p-0">
-          <div id="title-cont" className={"h_"+props.xClass}>
-            <h1><i className={props.myIcon}></i></h1>
+        className="latest-content-card-cont p-0"
+        onLoad={() => setIsLoading(false)}>
+          <div 
+            id="title-cont" 
+            className={"h_"+props.xClass}>
+              <h1>
+                <i className={props.myIcon}></i>
+              </h1>
           </div>
           <div className={lineClassName}></div>
-          <div className="container mx-auto p-0 iframe-cont" style={{"color": "magenta"}}>
-            {props.iframeJSX || "Loading"}
+          <div 
+            className="container mx-auto p-0 iframe-cont"z
+            >
+            {props.iframeJSX}
           </div>
       </Container>
+    </LoadingSpinner>
 
     );
 }
@@ -404,6 +413,22 @@ function copyToClipboard(text){
       }
   };
 
+function LoadingSpinner({isLoading, children}){
+  const style= {visibility: isLoading? "visible" : "hidden", position: isLoading? "relative": "fixed"};
+  return(
+    <div className="d-flex al-ju-center">
+      <section style={style} id="pl-sec">
+        <div id="pg-loading-spinner">
+          <div id="dot"/>
+        </div>
+      </section>
+      {children}
+    </div>
+    
+
+    );
+
+}
 export default App;
 
 

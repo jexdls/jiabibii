@@ -539,3 +539,46 @@ $rose-wh:35rem;
 		}
 	}
 }
+
+
+
+// LOADING
+#pl-sec{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    #pg-loading-spinner{
+	    height: 1.5rem;
+	    width: 1.5rem;
+    	border-radius:50%;
+	    background-color: transparent;
+	    animation-name: anim-pg-loading-spinner;
+	    animation-duration: 1s;
+	    animation-iteration-count: infinite;
+	    animation-timing-function: ease-out;
+	    #dot{
+	    	height:5px;
+	    	width:5px;
+	    	border-radius:50%;
+	    	background-color: $yellow-sat;
+	    }
+ 	}
+}
+
+@keyframes anim-pg-loading-spinner{
+  0%{
+    transform: rotate(0deg);
+  }
+  85%{
+    transform: rotate(360deg);
+  }
+  100%{
+    transform: rotate(360deg);
+  }
+}
+
+.al-ju-center{
+	align-items: center;
+	justify-contenr: center;
+}
