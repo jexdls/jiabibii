@@ -11,7 +11,10 @@ import rose from './img/rose.png';
 
 import InstagramEmbed from 'react-instagram-embed';
 
+import ScrollingColorBackground from 'react-scrolling-color-background';
+
 import { TwitterTimelineEmbed, TwitterTweetEmbed } from 'react-twitter-embed';
+
 
 
 function App() {
@@ -109,8 +112,15 @@ function App() {
 
   return (
     <Container fluid className="px-0 App">
+     
+            <ScrollingColorBackground
+        selector='.js-color-stop[data-background-color]'
+        colorDataAttribute='data-background-color'
+        initialRgb='rgb(0, 0, 0)'
+      />
 
-      <section id="home_sec">
+
+      <section id="home_sec" className="js-color-stop" data-background-color='rgb(360, 360, 360)'>
         <ContactInfo setShowContact={setShowContact} showContact={showContact}/>
         <GifOverview isOnPhone={isOnPhone}/>
         <Container fluid className={isOnPhone ? "px-0 ml-0 main-cont d-flex":"px-0 ml-0 main-cont d-flex mt-2"}>
@@ -127,7 +137,7 @@ function App() {
         <RosePicture/>
       </section>
 
-      <section id="content_sec">
+      <section id="content_sec" className="js-color-stop" data-background-color='rgb(0, 0, 0)'>
         <ContentTitle/>
         <Container fluid id="contents-cont" className="m-auto d-flex flex-wrap">
           <LatestContentCard myIcon="fab fa-facebook" xClass="facebook" contentId="idfacebook" iframeJSX={facebookIframeJSX}/>

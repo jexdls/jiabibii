@@ -4,7 +4,7 @@ $hyperlink-blue: #0000EE;
 
 html{
 	font-size: 20px;
-	background-color:$bg-color;
+	// background-color:$bg-color;
 }
 
 @media (max-width:600px){
@@ -418,7 +418,7 @@ $rose-wh:35rem;
 #content_sec{
 	position: relative;
 	overflow:hidden;
-	background-color: black;
+	// background-color: black;
 	min-height:48rem;
 }
 #content-title-cont{
@@ -451,7 +451,7 @@ $rose-wh:35rem;
 }
 
 .latest-content-card-cont{
-	background-color: #030303;
+	background-color: transparent;
 	overflow: hidden;
 	width:700px;
 
