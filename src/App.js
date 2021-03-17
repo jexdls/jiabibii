@@ -372,13 +372,12 @@ function LatestContentCard(props){
   const[isLoading, setIsLoading] = useState(true);
   const style= {visibility: !isLoading? "visible" : "hidden", position: !isLoading? "relative": "fixed"};
   return(
-    <LoadingSpinner isLoading={isLoading}>
+    <LoadingSpinner setIsLoading={setIsLoading} isLoading={isLoading}>
       <Container
         style={style}
         id={props.contentId}
         onMouseOver={() => setLineClassName(lineClassName+" thick-line")}
         onMouseLeave={() => setLineClassName("line " + props.xClass)}
-        className="latest-content-card-cont p-0"
         onLoad={() => setIsLoading(false)}>
           <div 
             id="title-cont" 
@@ -395,7 +394,6 @@ function LatestContentCard(props){
           </div>
       </Container>
     </LoadingSpinner>
-
     );
 }
 
@@ -413,15 +411,19 @@ function copyToClipboard(text){
       }
   };
 
-function LoadingSpinner({isLoading, children}){
+function LoadingSpinner({setIsLoading, isLoading, children}){
   const style= {visibility: isLoading? "visible" : "hidden", position: isLoading? "relative": "fixed"};
+  setTimeout(()=> setIsLoading(false), 15000);
   return(
-    <div className="d-flex al-ju-center">
-      <section style={style} id="pl-sec">
-        <div id="pg-loading-spinner">
-          <div id="dot"/>
-        </div>
-      </section>
+    <div 
+        className="m-auto latest-content-card-cont p-0">
+      {isLoading &&
+        <section style={style} id="pl-sec">
+          <div id="pg-loading-spinner">
+            <div id="dot"/>
+          </div>
+        </section>
+      }
       {children}
     </div>
     
