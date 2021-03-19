@@ -16,7 +16,6 @@ import ScrollingColorBackground from 'react-scrolling-color-background';
 import { TwitterTimelineEmbed, TwitterTweetEmbed } from 'react-twitter-embed';
 
 
-
 function App() {
     const [isOnPhone, setIsOnPhone] = useState((window.innerWidth < window.innerHeight)? true : false);
     window.addEventListener('resize', ()=>checkIfOnPhone());
@@ -140,7 +139,7 @@ function App() {
       <section id="content_sec" className="js-color-stop" data-background-color='rgb(0, 0, 0)'>
         <ContentTitle/>
         <Container fluid id="contents-cont" className="m-auto d-flex flex-wrap">
-          <LatestContentCard myIcon="fab fa-facebook" xClass="facebook" contentId="idfacebook" iframeJSX={facebookIframeJSX}/>
+          <LatestContentCard myIcon="fab fa-facebook" xClass="facebook animate__animated animate__fadeInUp" contentId="idfacebook" iframeJSX={facebookIframeJSX}/>
           <LatestContentCard myIcon="fab fa-youtube" xClass="youtube" contentId="idyoutube" iframeJSX={youtubeIframeJSX}/>
           <LatestContentCard myIcon="fab fa-instagram" xClass="instagram" contentId="idinstagram" iframeJSX={instagramIframeJSX}/>
           <LatestContentCard myIcon="fas fa-music" xClass="tiktok" contentId="idtiktok" iframeJSX={tiktokIframeJSX}/>
@@ -157,6 +156,7 @@ function GifOverview(props){
     const isOnPhone = props.isOnPhone;
     const img=[img1,img2];
     const items=[];
+    const [reanimate, setReanimate]=useState(false);
     // ITEMS IN CAROUSEL
     if(isOnPhone){
       for(let i=0; i<2; i++){
@@ -185,7 +185,7 @@ function GifOverview(props){
     }
 
     return (
-      <div className="gifoverview">
+    <div className= "gifoverview animate__animated animate__fadeInDown ">
         {isOnPhone &&
           <Container>
             <Carousel className="gifoverview-carousel">
@@ -213,7 +213,7 @@ function GifOverview(props){
 
 function MainTitle(props){
   return(
-    <div className="maintitle w-auto">
+    <div className="maintitle w-auto animate__animated animate__fadeInUp ">
         <h1 className="maintitle_lg">
           JIA
         </h1>
@@ -256,7 +256,7 @@ function CTAButtons(props){
   const setShowContact= props.setShowContact;
 
   return(
-    <div className ="cta-btns w-auto d-flex">
+    <div className ="cta-btns w-auto d-flex animate__animated animate__fadeInUp ">
       <a href="#content_sec">
         <button 
           // onFocus={()=>{setViewActive(true)}}
@@ -342,8 +342,9 @@ function ContactCopybtn(props) {
 
 function PortraitPicture(props){
   let alt="portrait of jiabibii";
+  let animateClass=" animate__animated animate__fadeInLeft ";
   return(
-    <div className={props.isOnPhone ? "img-portrait-portrait" : "img-portrait-landscape"}>
+    <div className={props.isOnPhone ? "img-portrait-portrait"+animateClass    : "img-portrait-landscape"+animateClass }>
       {props.isOnPhone && <img id="img-portrait" src={port_pic_portrait} alt={alt}/>}
       {!props.isOnPhone && <img id="img-landscape" src={port_pic_landscape} alt={alt}/>}
     </div>
@@ -352,7 +353,7 @@ function PortraitPicture(props){
 
 function RosePicture(props){
   return(
-    <div id="rose-cont" className="container-fluid d-flex flex-row-reverse">
+    <div id="rose-cont" className="container-fluid d-flex flex-row-reverse animate__animated animate__fadeInDown ">
       <div className="rose-picture">
         <img id="rose-img" src={rose} alt="rose background"/>
       </div>
@@ -362,7 +363,7 @@ function RosePicture(props){
 
 function About(props){
   return(
-    <div className="about-cont d-flex">
+    <div className="about-cont d-flex animate__animated animate__fadeInUp ">
       <h1>ABOUT</h1>
       <p>lorem ipsum dolor sit amett lorem ipsum dolor sit amett lorem ipsum dolor sit amett lorem ipsum dolor sit amett lorem ipsum dolor sit amett lorem ipsum dolor sit amett lorem ipsum dolor sit amett lorem ipsum dolor sit amett</p>
     </div>

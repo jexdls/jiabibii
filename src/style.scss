@@ -48,6 +48,8 @@ $gifoverview-gif-w:4000px;
 
 .gifoverview{
 	padding-top: 1rem;
+	position: relative;
+	z-index:10;
 
 	&-carousel{
 		z-index: 2;
@@ -582,3 +584,5 @@ $rose-wh:35rem;
 	align-items: center;
 	justify-contenr: center;
 }
+
+.animate__animated{animation-play-state: running;}
